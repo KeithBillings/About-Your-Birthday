@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- Fontawesome Kit -->
+    <script src="https://kit.fontawesome.com/3da1a747b2.js" crossorigin="anonymous"
+    ></script>
+    <!-- Tailwind CSS CDN -->
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <!-- My CSS  -->
+    <link rel="stylesheet" href="style.css" />
+    <title>About Your Birthday?</title>
+</head>
+<body>
+    <!-- Header -->
+        <span class="font-semibold text-5xl tracking-tight">About Your Birthday?</span>
+    <br>
+        <!-- Header End -->
+        <!-- Birthday Container for User Criteria -->
+    <div class="container" id="birthdayInfo">
+            <div class="setting">
+                <p class="font-semibold text-xl tracking-tight">What Do You Want To Know About Your Birthday?</p>
+            </div>
+            <div class="setting">
+                <label>My Zodiac Sign</label> 
+                <input type="checkbox" id="zodiacSign" checked />
+            </div>
+            <div class="setting">
+                <label>My Horoscope</label> 
+                <input type="checkbox" id="horoscope" checked />
+            </div>
+            <div class="setting">
+                <label>Joke Of The Day</label> 
+                <input type="checkbox" id="dailyJoke" checked />
+            </div>
+            <div class="setting">
+                <label>Music Released On This Day</label> 
+                <input type="checkbox" id="musicReleased" checked />
+            </div>
+            <div class="setting">
+                <label>Celebrities Born On This Day</label> 
+                <input type="checkbox" id="famousCelebs" checked />
+            </div>
+        
+        <p class="font-semibold text-lg tracking-tight">Enter Your Birthday</p>
+        <div class="bDate-container">
+            <input type="text" placeholder="MM/DD/YYYY" id="searchInput">
+            <button class="btn" id="birthDate">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+    </div>
+    <!-- End Birthday Container -->
+    <br>
+    <!-- Below We Will Generate Flex Columns From Criteria Selected *EXAMPLE* -->
+    <div class="flex flex-col bg-gray-200" id="populateBirthdayInfo">
+        <div class="text-gray-700 text-center bg-gray-400 px-4 py-2 m-2">1</div>
+        <div class="text-gray-700 text-center bg-gray-400 px-4 py-2 m-2">2</div>
+        <div class="text-gray-700 text-center bg-gray-400 px-4 py-2 m-2">3</div>
+        <div class="text-gray-700 text-center bg-gray-400 px-4 py-2 m-2">3</div>
+    </div>
+    <!-- End of Flex Column *Example* -->
+    
+    <script src="script.js"></script>
+    
+</body>
+</html>
