@@ -1,12 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
 @tailwind base;
 
-* {
-	box-sizing: border-box;
-}
-
 body {
-	background-color: #454545;
 	color: #fff;
 	display: flex;
 	font-family: 'Muli', sans-serif;
@@ -29,15 +24,6 @@ h2 {
 
 input[type=checkbox] {
 	margin-right: 0;
-}
-
-/* birthday container */
-.container {
-	background-color: rgb(126, 126, 126);
-	box-shadow: 0px 2px 10px rgba(255, 255, 255, 0.2);
-	padding: 20px;
-	width: 400px;
-	max-width: 100%;
 }
 
 /* birthday criteria container */
@@ -75,13 +61,9 @@ input[type=checkbox] {
 }
 
 /* Search btn */
-.btn {
-	border: none;
-	color: #fff;
-	cursor: pointer;
-	font-size: 16px;
-	padding: 8px 12px;
-	background-color: rgb(156, 156, 156);
+#birthDate {
+	position: relative;
+	margin-left: 40px;
 }
 
 /* birthday criteria */
@@ -93,7 +75,7 @@ input[type=checkbox] {
 }
 
 @media screen and (max-width: 400px) {
-	.result-container {
+	.bDate-container {
 		font-size: 14px;
 	}
 }
