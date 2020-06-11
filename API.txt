@@ -1,13 +1,20 @@
 My Zodiac Sign
+http://zodiacal.herokuapp.com/
 
 My Horoscope
+https://rapidapi.com/HoroscopeApi/api/horoscope
 
 A GIF For You
+https://developers.giphy.com/docs/api/
+https://support.giphy.com/hc/en-us/articles/360020283431-Request-A-GIPHY-API-Key
 
 Weather On Your Birthday
+https://openweathermap.org/api
 
 Joke Of The Day
+https://jokes.one/api/joke/
 
 Music Released On This Day
 
 Celebrities Born On This Day
+https://github.com/daxeel/CelebInfo-API
