@@ -61,7 +61,7 @@ input[type=checkbox] {
 }
 
 /* Search btn */
-#birthDate {
+#searchButton {
 	position: relative;
 	margin-left: 40px;
 }
