@@ -79,10 +79,10 @@ $(document).ready(function(){
     console.log(zodiacURL);
     $.ajax({
       url: zodiacURL,
-      headers: {  'Access-Control-Request-Origin': '*' },
+      crossDomain: true,
       method: "GET"
     }).then(function(response){
-      console.log("hello", response)
+      console.log("response", response)
     })
     
   };
