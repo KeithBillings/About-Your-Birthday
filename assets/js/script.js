@@ -74,7 +74,7 @@ $(document).ready(function () {
     if ((userBirthDay >= 22 && userBirthMonth === 12) || (userBirthDay <= 20 && userBirthMonth === 01)) {
       zodiacResult = (zodiacSign[11]);
     }
-     
+
     console.log(zodiacResult);
 
     //Trying new XMLrequest
@@ -94,10 +94,32 @@ $(document).ready(function () {
     // xhr.setRequestHeader("x-rapidapi-key", "SIGN-UP-FOR-KEY");
 
     // xhr.send(data);
-
+    let horoscopeURL = ("http://sandipbgt.com/theastrologer/api/horoscope/" + zodiacResult + "/today/")
     // let zodiacURL = ("https://zodiacal.herokuapp.com/" + zodiacResult)
-    // console.log(zodiacURL);
+    //console.log(horoscopeURL);
+    
+    async function getHoroscope() {
+      $("#horoscopeEL").empty();
+      const response = await fetch(horoscopeURL);
+      const data = await response.json();
+      const { sunsign, horoscope, meta } = data;
 
+      $('#horoscopeEl').append("<b>Your Sunsign is:</b> " + sunsign + "<br>" + "<b>Horoscope:</b><br>" + horoscope + "<br><br>" + "<b>Mood:</b> " + meta.mood + "<div><b>Keywords:</b></div> " + meta.keywords);
+      console.log(sunsign);
+      console.log(horoscope);
+      console.log(meta);
+    }
+    getHoroscope();
+    
+    // $.ajax({
+    //   url: horoscopeURL,
+    //   method: "GET /api/horoscope/{sunsign}/today"
+    // }).then(function(response) {
+    //   $("#horoscopeEl").append("Your Horoscope Today: <br>" + response.json());
+    //   console.log(response);
+    // });
+    
+    
     // $.ajax({
     //   beforeSend: function (xhr) {
     //   xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
