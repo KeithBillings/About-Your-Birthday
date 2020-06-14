@@ -2,7 +2,7 @@ const userBirthdayInput = document.getElementById('userBirthdayInput');
 
 // Show Element
 function showHiddenEl(element) {
-  if (document.querySelector(":checked")) {
+  if (document.querySelector("input:checked")) {
     element = $(element).removeClass("hiddenEl");
     element = $(element).addClass('visibleEl');
     return element;
@@ -94,7 +94,7 @@ $(document).ready(function () {
     // xhr.setRequestHeader("x-rapidapi-key", "SIGN-UP-FOR-KEY");
 
     // xhr.send(data);
-    let horoscopeURL = ("http://sandipbgt.com/theastrologer/api/horoscope/" + zodiacResult + "/today/")
+    let horoscopeURL = ("https://sandipbgt.com/theastrologer/api/horoscope/" + zodiacResult + "/today/")
     // let zodiacURL = ("https://zodiacal.herokuapp.com/" + zodiacResult)
     //console.log(horoscopeURL);
     
@@ -142,5 +142,11 @@ $(document).ready(function () {
     event.preventDefault();
     userSearch();
     showHiddenEl($("#topMovie"));
+    showHiddenEl($("#horoscopeEl"));
+    // showHiddenEl($("#gifEl"));
+    // showHiddenEl($("#weatherEl"));
+    // showHiddenEl($("#dailyJokeEl"));
+    // showHiddenEl($("#musicReleasedEl"));
+
   });
 });
