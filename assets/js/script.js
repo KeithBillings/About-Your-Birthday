@@ -1,8 +1,9 @@
 const userBirthdayInput = document.getElementById('userBirthdayInput');
+const birthDayEl = $("#searchInput").val();
 
 // Show Element
 function showHiddenEl(element) {
-  if (document.querySelector(":checked")) {
+  if (document.querySelector("input:checked")) {
     element = $(element).removeClass("hiddenEl");
     element = $(element).addClass('visibleEl');
     return element;
@@ -15,7 +16,7 @@ function showHiddenEl(element) {
 $(document).ready(function () {
   // Search Function
   function userSearch() {
-    // User Birthdate Variables
+    // User Birthdate Variables 06/01/1989
     let userBirthMonth = +($("#searchInput").val().slice(0, 2));
     let userBirthDay = +($("#searchInput").val().slice(3, 5));
     let userBirthYear = +($("#searchInput").val().slice(-4)); // Choosing Last 4 characters of user input
@@ -77,26 +78,8 @@ $(document).ready(function () {
 
     console.log(zodiacResult);
 
-    //Trying new XMLrequest
-    // var data = null;
-
-    // var xhr = new XMLHttpRequest();
-    // xhr.withCredentials = true;
-
-    // xhr.addEventListener("readystatechange", function () {
-    //   if (this.readyState === this.DONE) {
-    //     console.log(this.responseText);
-    //   }
-    // });
-
-    // xhr.open("GET", "https://zodiac-sign.p.rapidapi.com/signs");
-    // xhr.setRequestHeader("x-rapidapi-host", "zodiac-sign.p.rapidapi.com");
-    // xhr.setRequestHeader("x-rapidapi-key", "SIGN-UP-FOR-KEY");
-
-    // xhr.send(data);
+    // Horoscope / Zodiac Sign API
     let horoscopeURL = ("http://sandipbgt.com/theastrologer/api/horoscope/" + zodiacResult + "/today/")
-    // let zodiacURL = ("https://zodiacal.herokuapp.com/" + zodiacResult)
-    //console.log(horoscopeURL);
     
     async function getHoroscope() {
       $("#horoscopeEL").empty();
@@ -111,11 +94,29 @@ $(document).ready(function () {
     }
     getHoroscope();
     
+    // Nasa API
+    let nasaAPIKey = "4tebK7RiSEiz7RxmDNytqxAa7eayjAAJdQibOqis";
+    let nasaURL = ("https://api.nasa.gov/planetary/apod?api_key="+nasaAPIKey+"&date="+birthDayEl);
+    console.log(nasaURL);
+
+    async function getNASAimg() {
+      //$("#weatherEL").empty();
+      const response = await fetch(nasaURL);
+      const data = await response.json();
+      const { url, title, explanation } = data;
+
+      $('#weatherEl').append("Space On Your Day Looked Like: <br>" + title + "<video><source src="  + url + ">"  + "</video>" + "<br><br>" + "<div></div>" + explanation);
+      console.log(title);
+      console.log(url);
+      console.log(explanation);
+    }
+    getNASAimg();
+
     // $.ajax({
-    //   url: horoscopeURL,
-    //   method: "GET /api/horoscope/{sunsign}/today"
+    //   url: nasaURL,
+    //   method: "GET"
     // }).then(function(response) {
-    //   $("#horoscopeEl").append("Your Horoscope Today: <br>" + response.json());
+    //   $("#weatherEl").append("Space On Your Day Looked Like: <br>" + "<img src="  + response.url + ">" );
     //   console.log(response);
     // });
     
@@ -142,5 +143,11 @@ $(document).ready(function () {
     event.preventDefault();
     userSearch();
     showHiddenEl($("#topMovie"));
+    showHiddenEl($("#horoscopeEl"));
+    showHiddenEl($("#weatherEl"));
+    // showHiddenEl($("#gifEl"));
+    // showHiddenEl($("#dailyJokeEl"));
+    // showHiddenEl($("#musicReleasedEl"));
+
   });
 });
