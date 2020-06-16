@@ -25,28 +25,16 @@
             </div>
             <br>
             <div class="setting border-l-4 p-2 border-gray-800">
-                <label>My Zodiac Sign</label> 
-                <input type="checkbox" id="zodiacSign" checked />
-            </div>
-            <div class="setting border-l-4 p-2 border-gray-800">
                 <label>My Horoscope</label> 
                 <input type="checkbox" id="horoscope" checked />
             </div>
             <div class="setting border-l-4 p-2 border-gray-800">
-                <label>A GIF For You</label> 
-                <input type="checkbox" id="giphyIMG" checked />
-            </div>
-            <div class="setting border-l-4 p-2 border-gray-800">
-                <label>Weather On That Day</label> 
-                <input type="checkbox" id="forecast" checked />
+                <label>Space Looked Like</label> 
+                <input type="checkbox" id="nasaAPI" checked />
             </div>
             <div class="setting border-l-4 p-2 border-gray-800">
                 <label>Joke Of The Day</label> 
                 <input type="checkbox" id="dailyJoke" checked />
-            </div>
-            <div class="setting border-l-4 p-2 border-gray-800">
-                <label>Music Released On This Day</label> 
-                <input type="checkbox" id="musicReleased" checked />
             </div>
             <div class="setting border-l-4 p-2 border-gray-800">
                 <label>Celebrities Born On This Day</label> 
@@ -61,7 +49,7 @@
         <form id="userBirthdayInput" class="bDate-container">
             <input id="searchInput" type="text" class="bg-gray-100 focus:bg-gray-400" placeholder="MM/DD/YYYY" >
             <button id="searchButton" class="bg-gray-600 hover:bg-gray-500 border-b-4 border-gray-700 py-1 px-2 rounded">
-                <i class="fa fa-search"></i>
+            <i class="fa fa-search"></i>
             </button>
         </form>
     </div>
@@ -71,11 +59,9 @@
     <div class="w-1/3 flex-col bg-gray-200" id="populateBirthdayInfo">
         <div id="topMovie" class="text-gray-700 text-center bg-gray-400 px-4 py-2 m-2 hiddenEl">Want to know the top movie from your birth year?</div>
         <div id="horoscopeEl" class="text-gray-700 text-center bg-gray-400 px-4 py-2 m-2 hiddenEl"></div>
-        <div id="gifEl" class="text-gray-700 text-center bg-gray-400 px-4 py-2 m-2 hiddenEl"></div>
-        <div id="weatherEl" class="text-gray-700 text-center bg-gray-400 px-4 py-2 m-2 hiddenEl"></div>
+        <div id="nasaAPIEl" class="text-gray-700 text-center bg-gray-400 px-4 py-2 m-2 hiddenEl"></div>
         <div id="dailyJokeEl" class="text-gray-700 text-center bg-gray-400 px-4 py-2 m-2 hiddenEl"></div>
-        <div id="musicReleasedEl" class="text-gray-700 text-center bg-gray-400 px-4 py-2 m-2 hiddenEl"></div>
-        <div class="text-gray-700 text-center bg-gray-400 px-4 py-2 m-2 hiddenEl"></div>
+        <div id="famousCelebrities" class="text-gray-700 text-center bg-gray-400 px-4 py-2 m-2 hiddenEl"></div>
     </div>
     <br>
     <!-- End of Flex Column *Example* -->
