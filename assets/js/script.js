@@ -24,9 +24,26 @@ $(document).ready(function () {
       method: "GET"
     })
       .then(function (response) {
-        $("#topMovie").append("<br><img src='" + response.Poster + "'/>")
+        $("#topMovie").append("<br><center><img src='" + response.Poster + "'/>" + "</center>")
       });
 
+    // Famouse Celebrities API
+    $.ajax({
+      url: 'https://raw.githubusercontent.com/alebelcor/celeb-birthdays/master/output/celeb-birthdays.json',
+      method: "GET"
+    }).then(function(people) {
+      people = JSON.parse(people);
+      var matchingPeople = people[$("#searchInput").val().slice(0, 2) + '-' + $("#searchInput").val().slice(3, 5)];
+      console.log(matchingPeople);
+      $("#famousCelebrities").html("Celebrity's you share a birthday with: ");
+        // loop used to display each celebrity on html
+      for (var i = 0; i < matchingPeople.length; i++) {
+        // add each person to html
+        console.log(matchingPeople[i]);
+        $("#famousCelebrities").append('<p>' + '<b>'+ matchingPeople[i] + '</b>'+'</p>');
+      }
+    });
+    
     // Zodiac Query
 
     const zodiacResult = getZodiac(userBirthObj)
@@ -132,10 +149,10 @@ async function getNASAimg({ userBirthDay, userBirthMonth }) {
   let { url, title, media_type, explanation } = data;
 
   if (media_type === "image" && media_type !== "video") {
-    return $('#nasaAPIEl').html("Last Year On Your Birthday Space Looked Like: <br>" + title + "<img src=" + url + " />" + "<br><br>" + "<div></div>" + explanation);
+    return $('#nasaAPIEl').html("<b>Last Year On Your Birthday Space Looked Like:</b> <br>" + title + "<center><img src=" + url + " />" + "<br><br>" + "</center><div></div>" + explanation);
   }
   if (media_type === "video" && media_type !== "image") {
-    return $('#nasaAPIEl').html("Last Year On Your Birthday Space Looked Like: <br>" + title + "<iframe width='360', height='215', src=" + url + ">" + "</iframe>" + "<br><br>" + "<div></div>" + explanation);
+    return $('#nasaAPIEl').html("<b>Last Year On Your Birthday Space Looked Like:</b> <br>" + title + "<iframe width='360', height='215', src=" + url + ">" + "</iframe>" + "<br><br>" + "<div></div>" + explanation);
   }
 }
 
@@ -148,13 +165,3 @@ async function getHoroscope(zodiacResult) {
 
   $('#horoscopeEl').html("<b>Your Sunsign is:</b> " + sunsign + "<br>" + "<b>Horoscope:</b><br>" + horoscope + "<br><br>" + "<b>Mood:</b> " + meta.mood + "<div><b>Keywords:</b></div> " + meta.keywords);
 }
-
-// async function getFamousCelebrity(userBirthMonth, userBirthDay) {
-//   const celebrityURL = ("https://raw.githubusercontent.com/alebelcor/celeb-birthdays/master/output/celeb-birthdays.json")
-//   const response = await fetch(celebrityURL);
-//   const data = await response.json();
-//   var birthdays = require('celeb-birthdays');
-//   console.log(birthdays['08-07']);
-
-//   $('#famousCelebrities').html("<b>You Share Your Birthday With:</b> " + birthdays[userBirthMonth, userBirthDay]);
-// }
