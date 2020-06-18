@@ -15,7 +15,7 @@ $(document).ready(function () {
     // Top Movie of Birth Year
     let topMovie = movieList[0][userBirthObj.userBirthYear];
     $("#topMovie").empty(); // Protection from overflow
-    $("#topMovie").append("Top Movie From Your Birth Year: <br>" + topMovie);
+    $("#topMovie").append("<h4>Top Movie From Your Birth Year: <br></h4>" + "<i>" + topMovie +"</i>");
 
     // API fetch for Poster
     let movieURL = "https://www.omdbapi.com/?t=" + topMovie + "&apikey=dd89f250"
@@ -24,7 +24,7 @@ $(document).ready(function () {
       method: "GET"
     })
       .then(function (response) {
-        $("#topMovie").append("<br><center><img src='" + response.Poster + "'/>" + "</center>")
+        $("#topMovie").append("<br><center><img src=" + response.Poster + "/></center>")
       });
 
     // Famouse Celebrities API
@@ -43,17 +43,55 @@ $(document).ready(function () {
         $("#famousCelebrities").append('<p>' + '<b>'+ matchingPeople[i] + '</b>'+'</p>');
       }
     });
+
+    // Random User Birth Date Facts
+    let randomDayFacts = function () {
+      let queryURL = "http://numbersapi.com/" + userBirthObj.userBirthMonth + "/" + userBirthObj.userBirthDay + "/date";
+      console.log(queryURL);
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).then(function (response) {
+        $("#numberAgeEl").empty();
+        $("#numberAgeEl").append("<h4>Here are some random birthday facts: </h4>");
+        $("#numberAgeEl").append(response);
+      });
+    };
+    randomDayFacts();
     
-    // Zodiac Query
+    // User Age Calculation
+    let userAge = new Date(userBirthObj.userBirthYear, userBirthObj.userBirthMonth, userBirthObj.userBirthDay);
+    function calculateAge(d) { // birthday "d" is a date
+      let ageDifMs = Date.now() - d.getTime();
+      let ageDate = new Date(ageDifMs); // miliseconds from epoch
+      return Math.abs(ageDate.getUTCFullYear() - 1970);
+    }
+    userAge = calculateAge(userAge);
+    console.log(userAge);
+    
+    // Random User Age Facts
+    let randomAgeFacts = function () {
+      let queryURL = "http://numbersapi.com/" + userAge;
+      console.log(queryURL);
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).then(function (response) {
+        $("#numberAgeEl").append("<p>" +"<h4>" + "You Are " + userAge +" Years Old!" + "</h4>"+"</p>");
+        $("#numberAgeEl").append("<p>"+ response + "</p>");
+      });
+
+    };
+    randomAgeFacts();
 
     const zodiacResult = getZodiac(userBirthObj)
 
-    // Horoscope / Zodiac Sign API
-
+    // Checking to see if the checkbox elements are checked or not
     const isShowHoroscope = document.getElementById('horoscope').checked
     const isShowNasa = document.getElementById('nasaAPI').checked
     const isShowMovie = document.getElementById('topMovieThatYear').checked
     const isShowCelebrity = document.getElementById('famousCelebs').checked
+    const isShowNumberAge = document.getElementById('numberAPI').checked
 
     // Shows / hides elements
     if (isShowHoroscope) {
@@ -83,6 +121,12 @@ $(document).ready(function () {
     } else {
       $("#famousCelebrities").hide();
     }
+
+    if (isShowNumberAge) {
+      $("#numberAgeEl").show();
+    } else {
+      $("#numberAgeEl").hide();
+    }
   };
 
   // Event Listeners For Search Call. Works on entire input area. 
@@ -93,8 +137,8 @@ $(document).ready(function () {
   });
 });
 
+// Zodiac Calculation
 function getZodiac(userBirthObj) {
-
   // convert to integer 
   const userBirthMonth = parseInt(userBirthObj.userBirthMonth);
   const userBirthDay = parseInt(userBirthObj.userBirthDay);
@@ -137,10 +181,10 @@ function getZodiac(userBirthObj) {
   if ((userBirthDay >= 22 && userBirthMonth === 12) || (userBirthDay <= 20 && userBirthMonth === 01)) {
     zodiacResult = (zodiacSign[11]);
   }
-  return zodiacResult
+  return zodiacResult // What the user's zodiac sign is
 }
 
-
+// NASA API Query
 async function getNASAimg({ userBirthDay, userBirthMonth }) {
   let nasaAPIKey = "4tebK7RiSEiz7RxmDNytqxAa7eayjAAJdQibOqis";
   let nasaURL = `https://api.nasa.gov/planetary/apod?api_key=${nasaAPIKey}&date=${'2019'}-${userBirthMonth}-${userBirthDay}`
@@ -156,7 +200,7 @@ async function getNASAimg({ userBirthDay, userBirthMonth }) {
   }
 }
 
-
+// Get Horoscope API Query
 async function getHoroscope(zodiacResult) {
   const horoscopeURL = ("http://sandipbgt.com/theastrologer/api/horoscope/" + zodiacResult + "/today/")
   const response = await fetch(horoscopeURL);
