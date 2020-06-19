@@ -59,7 +59,7 @@ let movieList = [{
   "1963": "Cleopatra",
   "1962": "Lawrence of Arabia",
   "1961": "One+Hundred+and+One+Dalmatians",
-  "1960": "Spartacus&y=1960",
+  "1960": "Psycho",
   "1959": "Ben-Hur",
   "1958": "South Pacific",
   "1957": "The Bridge on the River Kwai",

@@ -52,7 +52,7 @@ $(document).ready(function () {
     
     // Random User Birth Date Facts
     let randomDayFacts = function () {
-      let queryURL = "https://numbersapi.com/" + userBirthObj.userBirthMonth + "/" + userBirthObj.userBirthDay + "/date";
+      let queryURL = "https://cors-anywhere.herokuapp.com/https://numbersapi.com/" + userBirthObj.userBirthMonth + "/" + userBirthObj.userBirthDay + "/date";
       console.log(queryURL);
       $.ajax({
         url: queryURL,
@@ -77,7 +77,7 @@ $(document).ready(function () {
     
     // Random User Age Facts
     let randomAgeFacts = function () {
-      let queryURL = "https://numbersapi.com/" + userAge;
+      let queryURL = "https://cors-anywhere.herokuapp.com/https://numbersapi.com/" + userAge;
       console.log(queryURL);
       $.ajax({
         url: queryURL,
