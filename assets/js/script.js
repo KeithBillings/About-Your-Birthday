@@ -1,5 +1,11 @@
 const userBirthdayInput = document.getElementById('userBirthdayInput');
 const birthDayEl = $("#searchInput").val();
+const proxyurl = "https://cors-anywhere.herokuapp.com/";
+const url = "https://sandipbgt.com/theastrologer/api/horoscope/"; // site that doesn’t send Access-Control-*
+fetch(proxyurl + url) // https://cors-anywhere.herokuapp.com/https://example.com
+.then(response => response.text())
+.then(contents => console.log(contents))
+.catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
 
 $(document).ready(function () {
   // Search Function
@@ -43,7 +49,7 @@ $(document).ready(function () {
         $("#famousCelebrities").append('<p>' + '<b>'+ matchingPeople[i] + '</b>'+'</p>');
       }
     });
-
+    
     // Random User Birth Date Facts
     let randomDayFacts = function () {
       let queryURL = "https://numbersapi.com/" + userBirthObj.userBirthMonth + "/" + userBirthObj.userBirthDay + "/date";
