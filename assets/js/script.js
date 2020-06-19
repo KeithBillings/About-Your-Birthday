@@ -46,7 +46,7 @@ $(document).ready(function () {
 
     // Random User Birth Date Facts
     let randomDayFacts = function () {
-      let queryURL = "http://numbersapi.com/" + userBirthObj.userBirthMonth + "/" + userBirthObj.userBirthDay + "/date";
+      let queryURL = "https://numbersapi.com/" + userBirthObj.userBirthMonth + "/" + userBirthObj.userBirthDay + "/date";
       console.log(queryURL);
       $.ajax({
         url: queryURL,
@@ -71,7 +71,7 @@ $(document).ready(function () {
     
     // Random User Age Facts
     let randomAgeFacts = function () {
-      let queryURL = "http://numbersapi.com/" + userAge;
+      let queryURL = "https://numbersapi.com/" + userAge;
       console.log(queryURL);
       $.ajax({
         url: queryURL,
@@ -202,7 +202,7 @@ async function getNASAimg({ userBirthDay, userBirthMonth }) {
 
 // Get Horoscope API Query
 async function getHoroscope(zodiacResult) {
-  const horoscopeURL = ("http://sandipbgt.com/theastrologer/api/horoscope/" + zodiacResult + "/today/")
+  const horoscopeURL = ("https://sandipbgt.com/theastrologer/api/horoscope/" + zodiacResult + "/today/")
   const response = await fetch(horoscopeURL);
   const data = await response.json();
   const { sunsign, horoscope, meta } = data;
