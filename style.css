@@ -9,7 +9,7 @@ body {
 	align-items: center;
 	justify-content: center;
 	padding: 10px;
-	min-height: 100vh;
+	min-height:100vh;
 }
 
 p {
@@ -63,7 +63,6 @@ input[type=checkbox] {
 	top: 5px;
 	right: 5px;
 	height: 40px;
-	width: 40px;
 }
 
 /* Search btn */
