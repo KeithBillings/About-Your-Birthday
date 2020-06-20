@@ -9,19 +9,19 @@ This was our first class assignment involving teams. The class was divided into 
 
 - Application home screen:
 
- ![](images/main.jpg)
+ ![image](images/main.jpg)
 
 - First entertainment item:
 
- ![](images/movie.jpg)
+ ![image of movie](images/movie.jpg)
 
 - Horoscope information:
 
- ![](images/horoscope.jpg)
+ ![image of horoscope](images/horoscope.jpg)
 
 - Number facts based on your Birth Date and Age plus Celebrities you share a Birthday with:
 
- ![](images/facts_celebs.jpg)
+ ![image of celebs](images/facts_celebs.jpg)
 
 
 ## Project Details
