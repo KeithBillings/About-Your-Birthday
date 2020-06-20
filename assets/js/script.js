@@ -8,10 +8,9 @@ $(document).ready(function () {
     const userBirthObj = {
       userBirthMonth: $("#searchInput").val().slice(0, 2),
       userBirthDay: $("#searchInput").val().slice(3, 5),
-      userBirthYear: $("#searchInput").val().slice(-4)
+      userBirthYear: $("#searchInput").val().slice(-4) // Choosing Last 4 characters of user input
     }
-    // Choosing Last 4 characters of user input
-
+    
     // Top Movie of Birth Year
     let topMovie = movieList[0][userBirthObj.userBirthYear];
     $("#topMovie").empty(); // Protection from overflow
