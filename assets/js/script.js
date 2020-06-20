@@ -104,7 +104,7 @@ $(document).ready(function () {
         console.log(response)
       const { sunsign, horoscope, meta } = response;
 
-  $('#horoscopeEl').html("<b>Your Sunsign is:</b> " + "<br>" + "<b>Horoscope:</b><br>" + horoscope + "<br><br>" + "<b>Mood:</b> " + meta.mood + "<div><b>Keywords:</b></div> " + meta.keywords);
+  $('#horoscopeEl').html("<b>Your Sunsign is: </b> " + sunsign + "<br>" + "<b>Horoscope:</b><br>" + horoscope + "<br><br>" + "<b>Mood:</b> " + meta.mood + "<div><b>Keywords:</b></div> " + meta.keywords);
 
       console.log('CORS anywhere response', response);
       }).catch(function(error) {
