@@ -94,24 +94,21 @@ $(document).ready(function () {
     let getHoroscope = function() {
     var originalURL= "http://sandipbgt.com/theastrologer/api/horoscope/" + zodiacResult + "/today/";
     var queryURL = "https://cors-anywhere.herokuapp.com/" + originalURL;
+    
     console.log(queryURL)
     $.ajax({
       url:queryURL,
       method: "GET",
       dataType: "json",
-      headers: {
-        "origin,x-requested-with": "xhr"
-      }
       }).then(function(response) {
         console.log(response)
-  const data = response.json();
-  const { sunsign, horoscope, meta } = data;
+      const { sunsign, horoscope, meta } = response;
 
-  $('#horoscopeEl').html("<b>Your Sunsign is:</b> " + response + "<br>" + "<b>Horoscope:</b><br>" + horoscope + "<br><br>" + "<b>Mood:</b> " + meta.mood + "<div><b>Keywords:</b></div> " + meta.keywords);
+  $('#horoscopeEl').html("<b>Your Sunsign is: </b> " + sunsign + "<br>" + "<b>Horoscope:</b><br>" + horoscope + "<br><br>" + "<b>Mood:</b> " + meta.mood + "<div><b>Keywords:</b></div> " + meta.keywords);
 
       console.log('CORS anywhere response', response);
-      }).fail(function(jqXHR, textStatus) {
-      console.error(textStatus)
+      }).catch(function(error) {
+      console.error(error)
       })
     }
 
