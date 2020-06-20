@@ -1,11 +1,5 @@
 const userBirthdayInput = document.getElementById('userBirthdayInput');
 const birthDayEl = $("#searchInput").val();
-const proxyurl = "https://cors-anywhere.herokuapp.com/";
-const url = "https://sandipbgt.com/theastrologer/api/horoscope/"; // site that doesn’t send Access-Control-*
-fetch(proxyurl + url) // https://cors-anywhere.herokuapp.com/https://example.com
-.then(response => response.text())
-.then(contents => console.log(contents))
-.catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
 
 $(document).ready(function () {
   // Search Function
@@ -40,7 +34,6 @@ $(document).ready(function () {
     }).then(function(people) {
       people = JSON.parse(people);
       var matchingPeople = people[$("#searchInput").val().slice(0, 2) + '-' + $("#searchInput").val().slice(3, 5)];
-      console.log(matchingPeople);
       $("#famousCelebrities").html("Celebrity's you share a birthday with: ");
         // loop used to display each celebrity on html
       for (var i = 0; i < matchingPeople.length; i++) {
@@ -51,12 +44,15 @@ $(document).ready(function () {
     });
     
     // Random User Birth Date Facts
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = "http://numbersapi.com/" + userBirthObj.userBirthMonth + "/" + userBirthObj.userBirthDay + "/date"; // site that doesn’t send Access-Control-*
+    fetch(proxyurl + url) // https://cors-anywhere.herokuapp.com/https://example.com
+    .then(response => response.text())
+    .then(contents => console.log(contents))
+    .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
     let randomDayFacts = function () {
-      let queryURL = "https://cors-anywhere.herokuapp.com/https://numbersapi.com/" + userBirthObj.userBirthMonth + "/" + userBirthObj.userBirthDay + "/date";
-      console.log(queryURL);
       $.ajax({
-        url: queryURL,
-        method: "GET"
+        url: (proxyurl + url)
       }).then(function (response) {
         $("#numberAgeEl").empty();
         $("#numberAgeEl").append("<h4>Here are some random birthday facts: </h4>");
@@ -75,13 +71,16 @@ $(document).ready(function () {
     userAge = calculateAge(userAge);
     console.log(userAge);
     
+    const proxyurlAge = "https://cors-anywhere.herokuapp.com/";
+    const urlAge = "http://numbersapi.com/" + userAge; // site that doesn’t send Access-Control-*
+    fetch(proxyurl + urlAge) // https://cors-anywhere.herokuapp.com/https://example.com
+    .then(response => response.text())
+    .then(contents => console.log(contents))
+    .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
     // Random User Age Facts
     let randomAgeFacts = function () {
-      let queryURL = "https://cors-anywhere.herokuapp.com/https://numbersapi.com/" + userAge;
-      console.log(queryURL);
       $.ajax({
-        url: queryURL,
-        method: "GET"
+        url: (proxyurlAge + urlAge)
       }).then(function (response) {
         $("#numberAgeEl").append("<p>" +"<h4>" + "You Are " + userAge +" Years Old!" + "</h4>"+"</p>");
         $("#numberAgeEl").append("<p>"+ response + "</p>");
@@ -90,7 +89,31 @@ $(document).ready(function () {
     };
     randomAgeFacts();
 
-    const zodiacResult = getZodiac(userBirthObj)
+    const zodiacResult = getZodiac(userBirthObj);
+    // Get Horoscope API Query
+    let getHoroscope = function() {
+    var originalURL= "http://sandipbgt.com/theastrologer/api/horoscope/" + zodiacResult + "/today/";
+    var queryURL = "https://cors-anywhere.herokuapp.com/" + originalURL;
+    console.log(queryURL)
+    $.ajax({
+      url:queryURL,
+      method: "GET",
+      dataType: "json",
+      headers: {
+        "origin,x-requested-with": "xhr"
+      }
+      }).then(function(response) {
+        console.log(response)
+  const data = response.json();
+  const { sunsign, horoscope, meta } = data;
+
+  $('#horoscopeEl').html("<b>Your Sunsign is:</b> " + response + "<br>" + "<b>Horoscope:</b><br>" + horoscope + "<br><br>" + "<b>Mood:</b> " + meta.mood + "<div><b>Keywords:</b></div> " + meta.keywords);
+
+      console.log('CORS anywhere response', response);
+      }).fail(function(jqXHR, textStatus) {
+      console.error(textStatus)
+      })
+    }
 
     // Checking to see if the checkbox elements are checked or not
     const isShowHoroscope = document.getElementById('horoscope').checked
@@ -206,12 +229,12 @@ async function getNASAimg({ userBirthDay, userBirthMonth }) {
   }
 }
 
-// Get Horoscope API Query
-async function getHoroscope(zodiacResult) {
-  const horoscopeURL = ("https://sandipbgt.com/theastrologer/api/horoscope/" + zodiacResult + "/today/")
-  const response = await fetch(horoscopeURL);
-  const data = await response.json();
-  const { sunsign, horoscope, meta } = data;
+// Original Horoscope API *worked before CORS*
+// async function getHoroscope(zodiacResult) {
+//   const horoscopeURL = ("https://sandipbgt.com/theastrologer/api/horoscope/" + zodiacResult + "/today/")
+//   const response = await fetch(horoscopeURL);
+//   const data = await response.json();
+//   const { sunsign, horoscope, meta } = data;
 
-  $('#horoscopeEl').html("<b>Your Sunsign is:</b> " + sunsign + "<br>" + "<b>Horoscope:</b><br>" + horoscope + "<br><br>" + "<b>Mood:</b> " + meta.mood + "<div><b>Keywords:</b></div> " + meta.keywords);
-}
+//   $('#horoscopeEl').html("<b>Your Sunsign is:</b> " + sunsign + "<br>" + "<b>Horoscope:</b><br>" + horoscope + "<br><br>" + "<b>Mood:</b> " + meta.mood + "<div><b>Keywords:</b></div> " + meta.keywords);
+// }
