@@ -38,7 +38,6 @@ $(document).ready(function () {
         // loop used to display each celebrity on html
       for (var i = 0; i < matchingPeople.length; i++) {
         // add each person to html
-        console.log(matchingPeople[i]);
         $("#famousCelebrities").append('<p>' + '<b>'+ matchingPeople[i] + '</b>'+'</p>');
       }
     });
@@ -69,7 +68,6 @@ $(document).ready(function () {
       return Math.abs(ageDate.getUTCFullYear() - 1970);
     }
     userAge = calculateAge(userAge);
-    console.log(userAge);
     
     const proxyurlAge = "https://cors-anywhere.herokuapp.com/";
     const urlAge = "http://numbersapi.com/" + userAge; // site that doesn’t send Access-Control-*
@@ -95,13 +93,11 @@ $(document).ready(function () {
     var originalURL= "http://sandipbgt.com/theastrologer/api/horoscope/" + zodiacResult + "/today/";
     var queryURL = "https://cors-anywhere.herokuapp.com/" + originalURL;
     
-    console.log(queryURL)
     $.ajax({
       url:queryURL,
       method: "GET",
       dataType: "json",
       }).then(function(response) {
-        console.log(response)
       const { sunsign, horoscope, meta } = response;
 
   $('#horoscopeEl').html("<b>Your Sunsign is: </b> " + sunsign + "<br>" + "<b>Horoscope:</b><br>" + horoscope + "<br><br>" + "<b>Mood:</b> " + meta.mood + "<div><b>Keywords:</b></div> " + meta.keywords);
@@ -225,13 +221,3 @@ async function getNASAimg({ userBirthDay, userBirthMonth }) {
     return $('#nasaAPIEl').html("<b>Last Year On Your Birthday Space Looked Like:</b> <br>" + title + "<iframe width='360', height='215', src=" + url + ">" + "</iframe>" + "<br><br>" + "<div></div>" + explanation);
   }
 }
-
-// Original Horoscope API *worked before CORS*
-// async function getHoroscope(zodiacResult) {
-//   const horoscopeURL = ("https://sandipbgt.com/theastrologer/api/horoscope/" + zodiacResult + "/today/")
-//   const response = await fetch(horoscopeURL);
-//   const data = await response.json();
-//   const { sunsign, horoscope, meta } = data;
-
-//   $('#horoscopeEl').html("<b>Your Sunsign is:</b> " + sunsign + "<br>" + "<b>Horoscope:</b><br>" + horoscope + "<br><br>" + "<b>Mood:</b> " + meta.mood + "<div><b>Keywords:</b></div> " + meta.keywords);
-// }
